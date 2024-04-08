@@ -8,6 +8,7 @@ interface PokeApiService {
         const val pokemonGetDetail = "pokemon/{id}"
     }
     @GET(pokemonGet)
+    @Headers("Content-Type:application/json")
     suspend fun getPokemonList(): PokemonEntity
 
     @GET(pokemonGetDetail)

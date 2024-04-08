@@ -10,9 +10,11 @@ class PokemonPresenter(private val view: PokemonContract.View) : PokemonContract
     override fun getPokemonList() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
+                view.showAlerDialog("Estamos obteniendo Pokemos")
                 val data = withContext(Dispatchers.IO) {
                     interactor.getPokemonList()
                 }
+                view.dismisAlerDialog()
                 view.showPokemonList(data)
             } catch (e: Exception) {
                 view.showError(e.message ?: "Error desconocido")

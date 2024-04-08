@@ -3,43 +3,234 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".view.PokemonDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-       <ImageView
-           android:id="@+id/imageViewDetail"
-           android:layout_width="match_parent"
-           android:layout_height="300dp"
-           android:scaleType="fitCenter"
-           android:layout_marginTop="50dp"
-           android:layout_gravity="center"
-           android:src="@mipmap/ic_launcher_round" />
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="25dp"
-           android:layout_gravity="center"
-           android:orientation="horizontal">
-           <TextView
-               android:id="@+id/namePokemon"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="25sp"
-               android:text="@string/Prueba" />
-           <TextView
-               android:id="@+id/locationAreaEncountersPokemon"
-               android:layout_width="wrap_content"
-               android:layout_marginEnd="20dp"
-               android:layout_height="match_parent"
-               android:textSize="25sp"
-               android:text="@string/Prueba" />
-       </LinearLayout>
-   </LinearLayout>
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/lightTeal"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Detalle del Pokémon"
+            app:navigationIcon="@drawable/flecha"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/relativeLayoutBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:background="@drawable/background_item_pokemon"
+                android:clickable="true"
+                android:clipToPadding="true"
+                android:focusable="true"
+                android:elevation="15dp"
+                android:padding="8dp"
+                tools:backgroundTint="@color/lightTeal">
+
+                <TextView
+                    android:id="@+id/textViewID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/background_item_span"
+                    android:text="@string/app_name"
+                    android:alpha="0.25"
+                    android:gravity="top"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textViewType1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/background_item_span"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/textViewType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textViewType3"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/background_item_span"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/textViewType3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/background_item_span"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="-16dp"
+                    android:layout_marginBottom="-24dp"
+                    android:adjustViewBounds="true"
+                    android:alpha="0.25"
+                    android:src="@drawable/pokeball"
+                    app:tint="@color/white" />
+                <ImageView
+                    android:id="@+id/imageViewPokemon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/poke001"
+                    android:scaleType="fitCenter" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageViewPokemon"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Nombre :"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Heigth :"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="weight :"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Base Experience :"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Nombre :"/>
+                        <TextView
+                            android:id="@+id/txtHeigth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Heigth :"/>
+                        <TextView
+                            android:id="@+id/txtWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="weight :"/>
+                        <TextView
+                            android:id="@+id/txtBaseExperience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/background_item_span"
+                            android:paddingStart="8dp"
+                            android:layout_marginTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:text="Base:"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

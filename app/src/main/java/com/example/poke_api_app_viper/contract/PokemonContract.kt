@@ -5,6 +5,8 @@ interface PokemonContract {
         fun showPokemonList(data:  PokemonEntity)
         //mostrar errores
         fun showError(message: String)
+        fun dismisAlerDialog()
+        fun showAlerDialog(message: String)
     }
     interface Presenter {
         // intermediador de interator y vista

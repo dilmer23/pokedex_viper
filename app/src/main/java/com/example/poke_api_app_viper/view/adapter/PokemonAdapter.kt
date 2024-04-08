@@ -55,7 +55,7 @@ class PokemonAdapter(private val router: PokemonContract.Router) : RecyclerView.
             textViewName1.text = pokemon.name.toString()
             textViewName2.text = "#$idContador"
 
-            val imageUrl = GlobalVars.imgPokemon + idContador + ".png"
+            val imageUrl = GlobalVars.imgPomemonDetail + idContador + ".png"
             Glide.with(itemView)
                 .load(imageUrl)
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))

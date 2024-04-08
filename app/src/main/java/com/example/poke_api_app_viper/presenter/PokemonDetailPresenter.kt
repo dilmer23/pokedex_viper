@@ -13,11 +13,13 @@ class PokemonDetailPresenter(private val view: PokemonDetailContract.View):Pokem
 
     override fun getPokemonDetail(url:String) {
         GlobalScope.launch(Dispatchers.Main) {
+            view.showAlerDialog("Cargando...")
             try {
                 val dataDeferred = GlobalScope.async(Dispatchers.IO) {
                     iterator.getPokemonDetail(url)
                 }
                 val data = dataDeferred.await()
+                view.dismisAlerDialog()
                 view.showPokemonDetail(data)
             } catch (e: Exception) {
                 view.showErrorDetail(e.message ?: "Error desconocido")

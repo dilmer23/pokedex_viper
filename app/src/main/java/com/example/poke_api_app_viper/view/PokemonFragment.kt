@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.poke_api_app_viper.databinding.FragmentPokemonBinding
 import com.example.poke_api_app_viper.router.PokemonRouter
+import com.example.poke_api_app_viper.view.common.CustomDialog
 
 class PokemonFragment : Fragment(), PokemonContract.View {
 
@@ -15,6 +16,7 @@ class PokemonFragment : Fragment(), PokemonContract.View {
     private lateinit var adapter: PokemonAdapter
     private var _binding: FragmentPokemonBinding? = null
     private val binding get() = _binding!!
+    private var customDialog: CustomDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,5 +53,12 @@ class PokemonFragment : Fragment(), PokemonContract.View {
     override fun showError(message: String) {
         // Implementa la lógica para mostrar un mensaje de error en caso de fallo en la obtención de datos
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+    override fun showAlerDialog(message: String) {
+        customDialog = CustomDialog(requireContext(), message)
+    }
+
+    override fun dismisAlerDialog() {
+        customDialog?.dismiss()
     }
 }
