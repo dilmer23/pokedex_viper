@@ -22,18 +22,19 @@ class PokemonAdapter(private val router: PokemonContract.Router) : RecyclerView.
         pokemonList = newList
        notifyItemChanged(pokemonList.size)
     }
+    fun setUpdateData(newList: List<Result>) {
+        pokemonList = newList
+        notifyItemChanged(pokemonList.size)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pokemon, parent, false)
         return PokemonViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         val pokemon = pokemonList[position]
         holder.bind(pokemon,position,router)
-//        holder.nextFragment(router,pokemon)
     }
-
     override fun getItemCount(): Int {
         return pokemonList.size
     }
@@ -49,7 +50,7 @@ class PokemonAdapter(private val router: PokemonContract.Router) : RecyclerView.
             val idContador = id + 1
             container.setOnClickListener {
                 //navegar al fragmento PokemonDetailFragmeto y pasar pokemon.url
-                router.navigateToFragmentScreen(idContador.toString())
+                router.navigateToFragmentScreen(pokemon.name)
 
             }
             textViewName1.text = pokemon.name.toString()
@@ -60,10 +61,6 @@ class PokemonAdapter(private val router: PokemonContract.Router) : RecyclerView.
                 .load(imageUrl)
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .into(imageView)
-        }
-
-        fun nextFragment(router: PokemonContract.Router, pokemon: Result){
-            router.navigateToFragmentScreen(pokemon.url)
         }
     }
 

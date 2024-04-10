@@ -47,4 +47,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Prueba">prueba de pokemon</string>
     <string name="home_title_pokedex">Pokedex</string>
+    <string name="msg_pokemon_search">Buscar Pokemon ....</string>
 </resources>

@@ -4,7 +4,8 @@ import retrofit2.http.Path
 
 interface PokeApiService {
     companion object{
-        const val pokemonGet = "pokemon?limit=100000&offset=0"
+       //const val pokemonGet = "pokemon?limit=100000&offset=0"
+        const val pokemonGet = "pokemon"
         const val pokemonGetDetail = "pokemon/{id}"
     }
     @GET(pokemonGet)

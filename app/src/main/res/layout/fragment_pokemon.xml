@@ -17,6 +17,17 @@
         android:adjustViewBounds="true"
         android:alpha="0.10"
         android:background="@drawable/poke001"/>
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="start"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="-80dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.10"
+        android:background="@drawable/poke002"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -31,10 +42,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:textSize="40sp"
                     android:fontFamily="@font/circularstd"
                     android:layout_marginBottom="30dp"
                     android:text="@string/home_title_pokedex"/>
+
+                <EditText
+                    android:id="@+id/searchEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/backgroud_search_input"
+                    android:layout_marginEnd="20dp"
+                    android:hint="@string/msg_pokemon_search"
+                    android:textColorHint="@color/black"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/circularstd_bold"
+                    android:autofillHints="name"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"

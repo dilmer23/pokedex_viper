@@ -1,8 +1,10 @@
+import Result
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.poke_api_app_viper.databinding.FragmentPokemonBinding
@@ -44,6 +46,12 @@ class PokemonFragment : Fragment(), PokemonContract.View {
 
     override fun showPokemonList(pokemonList:  PokemonEntity) {
          val data = pokemonList.results
+//        binding.searchEditText.addTextChangedListener{
+//           val dataUpdate = data?.filter { Result -> (Result?.name ?: "").contains(it.toString()) }
+//            if (dataUpdate != null) {
+//                adapter.setUpdateData(dataUpdate)
+//            }
+//        }
         if (data != null) {
             adapter.setData(data)
         }

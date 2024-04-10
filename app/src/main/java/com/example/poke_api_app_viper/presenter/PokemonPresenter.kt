@@ -2,8 +2,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class PokemonPresenter(private val view: PokemonContract.View) : PokemonContract.Presenter {
+class PokemonPresenter @Inject constructor(private val view: PokemonContract.View) : PokemonContract.Presenter {
 
     private val interactor = PokemonInteractor()
 

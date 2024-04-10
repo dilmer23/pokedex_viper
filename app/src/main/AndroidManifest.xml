@@ -28,12 +28,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Poke_api_app_viper"
         tools:targetApi="31">
-        <activity
-            android:name=".view.SplasScreenActivity"
-            android:exported="true"
-            android:label="@string/title_activity_splas_screen"
-            android:theme="@style/Theme.Poke_api_app_viper">
-        </activity>
 
         <activity
             android:name=".view.MainActivity"

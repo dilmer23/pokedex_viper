@@ -2,6 +2,7 @@ package com.example.poke_api_app_viper.view
 
 import PokemonColorUtil
 import PokemonDetailEntity
+import PokemonFragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -25,15 +26,22 @@ import com.example.poke_api_app_viper.presenter.PokemonDetailPresenter
 import com.example.poke_api_app_viper.utils.GlobalVars
 import com.example.poke_api_app_viper.utils.dismissCustomDialog
 import com.example.poke_api_app_viper.utils.showCustomDialog
+import com.example.poke_api_app_viper.view.adapter.PokemonAbilitiesAdapter
+import com.example.poke_api_app_viper.view.adapter.ViewPagerAdapter
 import com.example.poke_api_app_viper.view.common.CustomDialog
+import com.example.poke_api_app_viper.view.common.PokemonAbilitiesFragment
+import com.example.poke_api_app_viper.view.common.PokemonStatsFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 
 
 class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
     private lateinit var presenter: PokemonDetailContract.Presenter
-    private lateinit var router: PokemonContract.Router
+    private lateinit var route: PokemonContract.Router
     private var _binding: FragmentPokemonDetailBinding? = null
     private val binding get() = _binding!!
     private var customDialog: CustomDialog? = null
+    private lateinit var adapter: PokemonAbilitiesAdapter
 
 
     companion object {
@@ -63,8 +71,6 @@ class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
         if (url != null) {
             presenter.getPokemonDetail(url)
         }
-
-
     }
 
     override fun onDestroy() {
@@ -79,8 +85,16 @@ class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
         binding.txtBaseExperience.text = data.baseExperience.toString()
         binding.textViewID.text = "#" + data.id.toString()
         var color = PokemonColorUtil(requireContext()).getPokemonColor(data.types)
+        binding.tabLayout.setBackgroundColor(color)
         binding.relativeLayoutBackground.setBackgroundColor(color)
         binding.toolbar.setBackgroundColor(color)
+        binding.toolbar.setOnClickListener{
+            val fragment = PokemonFragment()
+            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         data.types?.forEachIndexed { index, type ->
             when (index) {
@@ -93,6 +107,21 @@ class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
                 .load(GlobalVars.imgPomemonDetail+data.id+".png")
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .into(binding.imageViewPokemon)
+
+
+        // Configura el ViewPager con el adaptador y los fragmentos.
+        val gson = Gson()
+        val dataAbilitis = gson.toJson(data.abilities)
+        val dataMove = gson.toJson(data.moves)
+        val viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
+        viewPagerAdapter.addFragment(PokemonAbilitiesFragment.newInstance(dataAbilitis,color), "Abilities")
+//        viewPagerAdapter.addFragment(PokemonStatsFragment.newInstance(dataMove), "Stats")
+        binding.viewPager.adapter = viewPagerAdapter
+
+        // Vincula el TabLayout con el ViewPager.
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.viewPager.setBackgroundColor(color)
+
     }
 
     override fun showErrorDetail(message: String) {

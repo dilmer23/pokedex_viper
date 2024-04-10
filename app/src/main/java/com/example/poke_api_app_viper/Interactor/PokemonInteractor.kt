@@ -1,7 +1,9 @@
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Constructor
+import javax.inject.Inject
 
-class PokemonInteractor {
+class PokemonInteractor@Inject constructor()  {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://pokeapi.co/api/v2/")

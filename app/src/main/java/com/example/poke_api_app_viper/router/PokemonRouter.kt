@@ -1,6 +1,7 @@
 package com.example.poke_api_app_viper.router
 
 import PokemonContract
+import PokemonFragment
 import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,5 +19,13 @@ class PokemonRouter(private val view: PokemonContract.View,private val context: 
             transaction.commit()
             Log.d("valor", url)
         }
+    }
+
+    override fun navigateMainFragment() {
+        val fragment = PokemonFragment()
+        val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

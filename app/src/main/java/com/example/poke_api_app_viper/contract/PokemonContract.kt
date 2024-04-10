@@ -14,5 +14,6 @@ interface PokemonContract {
     }
     interface Router {
         fun navigateToFragmentScreen(url: String?)
+        fun navigateMainFragment()
     }
 }

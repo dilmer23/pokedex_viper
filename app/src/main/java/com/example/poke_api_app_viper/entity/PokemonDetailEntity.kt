@@ -83,13 +83,13 @@ data class Other (
 
 data class Sprites (
     val backDefault: String?,
-    val backFemale: Any?,
+    val backFemale: String?,
     val backShiny: String?,
-    val backShinyFemale: Any?,
+    val backShinyFemale: String?,
     val frontDefault: String? = null,
-    val frontFemale: Any? = null,
+    val frontFemale: String? = null,
     val frontShiny: String? = null,
-    val frontShinyFemale: Any? = null,
+    val frontShinyFemale: String? = null,
     val other: Other? = null,
     val versions: Versions? = null,
     val animated: Sprites? = null
