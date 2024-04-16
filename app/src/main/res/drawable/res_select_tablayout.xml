@@ -3,5 +3,5 @@
     <!-- Color para el tab seleccionado -->
     <item android:color="@color/black"  android:state_selected="true"/>
     <!-- Color para el tab no seleccionado -->
-    <item android:color="@color/grey" />
+    <item android:color="@color/black" />
 </selector>

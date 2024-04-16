@@ -3,35 +3,28 @@ package com.example.poke_api_app_viper.view
 import PokemonColorUtil
 import PokemonDetailEntity
 import PokemonFragment
-import android.content.Context
+import PokemonTipoImg
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.poke_api_app_viper.R
 import com.example.poke_api_app_viper.contract.PokemonDetailContract
-import com.example.poke_api_app_viper.databinding.FragmentPokemonBinding
 import com.example.poke_api_app_viper.databinding.FragmentPokemonDetailBinding
 import com.example.poke_api_app_viper.presenter.PokemonDetailPresenter
 import com.example.poke_api_app_viper.utils.GlobalVars
-import com.example.poke_api_app_viper.utils.dismissCustomDialog
-import com.example.poke_api_app_viper.utils.showCustomDialog
 import com.example.poke_api_app_viper.view.adapter.PokemonAbilitiesAdapter
 import com.example.poke_api_app_viper.view.adapter.ViewPagerAdapter
 import com.example.poke_api_app_viper.view.common.CustomDialog
 import com.example.poke_api_app_viper.view.common.PokemonAbilitiesFragment
+import com.example.poke_api_app_viper.view.common.PokemonMovesFragment
 import com.example.poke_api_app_viper.view.common.PokemonStatsFragment
-import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 
 
@@ -79,11 +72,9 @@ class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
 
     override fun showPokemonDetail(data: PokemonDetailEntity) {
         binding.toolbar.title = data.name
-        binding.txtName.text = data.name
-        binding.txtHeigth.text = data.height.toString()
-        binding.txtWeight.text = data.weight.toString()
-        binding.txtBaseExperience.text = data.baseExperience.toString()
-        binding.textViewID.text = "#" + data.id.toString()
+        binding.txtHeigth.text = "Height :" + " "+ data.height.toString()
+        binding.txtWeight.text = "weight :" + " "  +data.weight.toString()
+        binding.textViewID.text = "#" +  " " + data.id.toString()
         var color = PokemonColorUtil(requireContext()).getPokemonColor(data.types)
         binding.tabLayout.setBackgroundColor(color)
         binding.relativeLayoutBackground.setBackgroundColor(color)
@@ -107,15 +98,21 @@ class PokemonDetailFragment : Fragment() , PokemonDetailContract.View {
                 .load(GlobalVars.imgPomemonDetail+data.id+".png")
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .into(binding.imageViewPokemon)
+        binding.imagenPomemonType.setImageDrawable(PokemonTipoImg(requireContext()).getPokemonColor(
+            data.types!!
+        ))
 
 
         // Configura el ViewPager con el adaptador y los fragmentos.
         val gson = Gson()
         val dataAbilitis = gson.toJson(data.abilities)
+        val dataStats = gson.toJson(data.stats)
         val dataMove = gson.toJson(data.moves)
         val viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPagerAdapter.addFragment(PokemonAbilitiesFragment.newInstance(dataAbilitis,color), "Abilities")
-//        viewPagerAdapter.addFragment(PokemonStatsFragment.newInstance(dataMove), "Stats")
+        viewPagerAdapter.addFragment(PokemonAbilitiesFragment.newInstance(dataAbilitis,color), "abilities")
+        viewPagerAdapter.addFragment(PokemonStatsFragment.newInstance(dataStats,color), "stat")
+        viewPagerAdapter.addFragment(PokemonMovesFragment.newInstance(dataMove,color), "move")
+        viewPagerAdapter.addFragment(PokemonStatsFragment.newInstance(dataStats,color), "evo")
         binding.viewPager.adapter = viewPagerAdapter
 
         // Vincula el TabLayout con el ViewPager.

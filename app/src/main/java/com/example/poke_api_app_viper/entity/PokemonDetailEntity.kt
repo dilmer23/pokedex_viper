@@ -167,9 +167,9 @@ data class GenerationViii (
 )
 
 data class Stat (
-    val baseStat: Long? = null,
-    val effort: Long? = null,
-    val stat: Species? = null
+    val baseStat: Int?,
+    val effort: Int?,
+    val stat: Species?
 )
 
 data class Type (

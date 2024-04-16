@@ -37,7 +37,7 @@ class PokemonAbilitiesAdapter : RecyclerView.Adapter<PokemonAbilitiesAdapter.Pok
 
         fun bind(pokemonAbilities: Ability, position: Int, colorData: Int) {
             val idContador = position + 1
-            textViewAbilities.text = pokemonAbilities.ability?.name
+            textViewAbilities.text = pokemonAbilities.ability?.name.toString()
             textViewAbilitiesId.text = idContador.toString()
             backgroud.setBackgroundColor(colorData)
 

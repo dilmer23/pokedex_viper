@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.common.PokemonStatsFragment">
+    tools:context=".view.common.PokemonMovesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_Stats"
+        android:id="@+id/rc_Moves"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_ability"
